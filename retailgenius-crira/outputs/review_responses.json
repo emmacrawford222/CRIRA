@@ -1,0 +1,167 @@
+{
+  "count": 11,
+  "reviews": [
+    {
+      "review_id": "rev-001",
+      "date": "2025-10-12",
+      "rating": 5,
+      "tone": "positive",
+      "main_points": [
+        "fast brewing",
+        "quiet operation",
+        "perfect coffee",
+        "high customer satisfaction"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "We're thrilled to hear you love the fast brewing and quiet operation, and that your coffee is just right—thanks for sharing your wonderful experience!"
+    },
+    {
+      "review_id": "rev-002",
+      "date": "2025-10-11",
+      "rating": 1,
+      "tone": "negative",
+      "main_points": [
+        "order arrived broken",
+        "unacceptable condition",
+        "long wait time",
+        "request manager callback"
+      ],
+      "route": "human_review",
+      "decision_source": "rules_first_pass",
+      "response": "We're truly sorry your order arrived in unacceptable condition after such a long wait—someone is reviewing your feedback now and will ensure a manager follows up with you as soon as possible."
+    },
+    {
+      "review_id": "rev-003",
+      "date": "2025-10-11",
+      "rating": 3,
+      "tone": "positive",
+      "main_points": [
+        "on-time delivery",
+        "accurate product description",
+        "adequate packaging"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "We're glad your order arrived on time and matched the description, and that the packaging met your needs—thanks for sharing your experience!"
+    },
+    {
+      "review_id": "rev-004",
+      "date": "2025-10-10",
+      "rating": 5,
+      "tone": "positive",
+      "main_points": [
+        "best service ever",
+        "highly satisfied",
+        "loyal customer",
+        "request for coupon"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "We're thrilled to hear you're so satisfied with our service and appreciate your loyalty! We frequently have promotions and send out coupons, so please keep an eye on your inbox for future offers."
+    },
+    {
+      "review_id": "rev-005",
+      "date": "2025-10-09",
+      "rating": 3,
+      "tone": "negative",
+      "main_points": [
+        "product is okay",
+        "does the job"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "Thank you for sharing your feedback—we appreciate your honesty and are glad the product meets your basic needs. If there’s anything specific we can do to improve your experience, please let us know."
+    },
+    {
+      "review_id": "rev-006",
+      "date": "2025-10-09",
+      "rating": 1,
+      "tone": "negative",
+      "main_points": [
+        "package left in rain",
+        "damaged delivery",
+        "courier negligence",
+        "request for replacement"
+      ],
+      "route": "human_review",
+      "decision_source": "rules_first_pass",
+      "response": "We're truly sorry your package was left in the rain and arrived damaged due to courier negligence—someone is reviewing your case now and will follow up regarding your replacement request."
+    },
+    {
+      "review_id": "rev-007",
+      "date": "2025-10-08",
+      "rating": 5,
+      "tone": "positive",
+      "main_points": [
+        "wonderful experience",
+        "easy to navigate website",
+        "product exceeded expectations"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "We're so glad you had a wonderful experience and found our website easy to use—it's fantastic to hear the product exceeded your expectations! Thank you for sharing your feedback."
+    },
+    {
+      "review_id": "rev-008",
+      "date": "2025-10-07",
+      "rating": 1,
+      "tone": "negative",
+      "main_points": [
+        "matter",
+        "critical",
+        "importance",
+        "requiring",
+        "immediate",
+        "escalation"
+      ],
+      "route": "human_review",
+      "decision_source": "rules_first_pass",
+      "response": "We understand the critical importance of your concern and want you to know that someone is reviewing this now to ensure it receives immediate attention. Thank you for bringing this to our notice."
+    },
+    {
+      "review_id": "rev-009",
+      "date": "2025-10-06",
+      "rating": 2,
+      "tone": "negative",
+      "main_points": [
+        "color mismatch",
+        "poor quality",
+        "disappointed",
+        "returning item"
+      ],
+      "route": "human_review",
+      "decision_source": "rules_first_pass",
+      "response": "Thank you for sharing your feedback about the color mismatch and quality concerns; someone is reviewing this now to ensure your experience is addressed properly. We appreciate your honesty and are sorry you were disappointed."
+    },
+    {
+      "review_id": "rev-010",
+      "date": "2025-10-05",
+      "rating": 5,
+      "tone": "positive",
+      "main_points": [
+        "fantastic product",
+        "works perfectly",
+        "happy with purchase"
+      ],
+      "route": "llm_response",
+      "decision_source": "llm_judge",
+      "response": "We're thrilled to hear you're happy with your purchase and that the product is working perfectly for you—thanks so much for your fantastic feedback!"
+    },
+    {
+      "review_id": "rev-011",
+      "date": "2025-10-04",
+      "rating": 3,
+      "tone": "negative",
+      "main_points": [
+        "warranty inquiry",
+        "support contact request",
+        "unclear manual",
+        "customer assistance needed"
+      ],
+      "route": "human_review",
+      "decision_source": "llm_judge",
+      "response": "Thank you for sharing your concerns about the warranty and manual—someone from our team is reviewing your feedback now to ensure you get the assistance you need."
+    }
+  ]
+}

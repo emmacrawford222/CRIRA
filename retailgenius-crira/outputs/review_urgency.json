@@ -1,0 +1,507 @@
+{
+  "count": 11,
+  "reviews": [
+    {
+      "review_id": "rev-001",
+      "date": "2025-10-12",
+      "rating": 5,
+      "tone": "positive",
+      "sentiment": {
+        "label": "positive",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 5,
+        "rating_band": "positive",
+        "rating_is_low": false,
+        "rating_is_high": true
+      },
+      "main_points": [
+        "fast brewing",
+        "quiet operation",
+        "perfect coffee",
+        "high customer satisfaction"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.0,
+        "decision_source": "llm_judge",
+        "reason": "The review is highly positive with a maximum rating and key phrases indicating satisfaction; no issues or concerns are present that require human intervention.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "positive",
+            "rating": 5,
+            "main_points": [
+              "fast brewing",
+              "quiet operation",
+              "perfect coffee",
+              "high customer satisfaction"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-002",
+      "date": "2025-10-11",
+      "rating": 1,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 1.0,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 1,
+        "rating_band": "negative",
+        "rating_is_low": true,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "order arrived broken",
+        "unacceptable condition",
+        "long wait time",
+        "request manager callback"
+      ],
+      "urgency": {
+        "is_urgent": true,
+        "route": "human_review",
+        "urgency_score": 1.0,
+        "decision_source": "rules_first_pass",
+        "reason": "negative sentiment with rating 1-2",
+        "rule_gate": {
+          "escalate_direct": true,
+          "matched_keywords": [],
+          "negative_and_low_rating": true,
+          "features": {
+            "sentiment": "negative",
+            "rating": 1,
+            "main_points": [
+              "order arrived broken",
+              "unacceptable condition",
+              "long wait time",
+              "request manager callback"
+            ]
+          },
+          "reason": "negative sentiment with rating 1-2"
+        }
+      }
+    },
+    {
+      "review_id": "rev-003",
+      "date": "2025-10-11",
+      "rating": 3,
+      "tone": "positive",
+      "sentiment": {
+        "label": "positive",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 3,
+        "rating_band": "mixed",
+        "rating_is_low": false,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "on-time delivery",
+        "accurate product description",
+        "adequate packaging"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.1,
+        "decision_source": "llm_judge",
+        "reason": "The review is positive, the rating is neutral, and the main points indicate satisfactory service without any issues requiring escalation.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "positive",
+            "rating": 3,
+            "main_points": [
+              "on-time delivery",
+              "accurate product description",
+              "adequate packaging"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-004",
+      "date": "2025-10-10",
+      "rating": 5,
+      "tone": "positive",
+      "sentiment": {
+        "label": "positive",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 5,
+        "rating_band": "positive",
+        "rating_is_low": false,
+        "rating_is_high": true
+      },
+      "main_points": [
+        "best service ever",
+        "highly satisfied",
+        "loyal customer",
+        "request for coupon"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.0,
+        "decision_source": "llm_judge",
+        "reason": "The review is highly positive with a maximum rating and no negative or concerning phrases. The request for a coupon is not urgent or problematic.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "positive",
+            "rating": 5,
+            "main_points": [
+              "best service ever",
+              "highly satisfied",
+              "loyal customer",
+              "request for coupon"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-005",
+      "date": "2025-10-09",
+      "rating": 3,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 0.998,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 3,
+        "rating_band": "mixed",
+        "rating_is_low": false,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "product is okay",
+        "does the job"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.2,
+        "decision_source": "llm_judge",
+        "reason": "The review expresses mild dissatisfaction but is not strongly negative or urgent; the rating is neutral and key phrases indicate the product is acceptable.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "negative",
+            "rating": 3,
+            "main_points": [
+              "product is okay",
+              "does the job"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-006",
+      "date": "2025-10-09",
+      "rating": 1,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 1,
+        "rating_band": "negative",
+        "rating_is_low": true,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "package left in rain",
+        "damaged delivery",
+        "courier negligence",
+        "request for replacement"
+      ],
+      "urgency": {
+        "is_urgent": true,
+        "route": "human_review",
+        "urgency_score": 1.0,
+        "decision_source": "rules_first_pass",
+        "reason": "negative sentiment with rating 1-2",
+        "rule_gate": {
+          "escalate_direct": true,
+          "matched_keywords": [],
+          "negative_and_low_rating": true,
+          "features": {
+            "sentiment": "negative",
+            "rating": 1,
+            "main_points": [
+              "package left in rain",
+              "damaged delivery",
+              "courier negligence",
+              "request for replacement"
+            ]
+          },
+          "reason": "negative sentiment with rating 1-2"
+        }
+      }
+    },
+    {
+      "review_id": "rev-007",
+      "date": "2025-10-08",
+      "rating": 5,
+      "tone": "positive",
+      "sentiment": {
+        "label": "positive",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 5,
+        "rating_band": "positive",
+        "rating_is_low": false,
+        "rating_is_high": true
+      },
+      "main_points": [
+        "wonderful experience",
+        "easy to navigate website",
+        "product exceeded expectations"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.0,
+        "decision_source": "llm_judge",
+        "reason": "The review is highly positive with a maximum rating and no negative or concerning key phrases. No escalation is required.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "positive",
+            "rating": 5,
+            "main_points": [
+              "wonderful experience",
+              "easy to navigate website",
+              "product exceeded expectations"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-008",
+      "date": "2025-10-07",
+      "rating": 1,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 1,
+        "rating_band": "negative",
+        "rating_is_low": true,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "matter",
+        "critical",
+        "importance",
+        "requiring",
+        "immediate",
+        "escalation"
+      ],
+      "urgency": {
+        "is_urgent": true,
+        "route": "human_review",
+        "urgency_score": 1.0,
+        "decision_source": "rules_first_pass",
+        "reason": "negative sentiment with rating 1-2; high-risk keyword match: critical",
+        "rule_gate": {
+          "escalate_direct": true,
+          "matched_keywords": [
+            "critical"
+          ],
+          "negative_and_low_rating": true,
+          "features": {
+            "sentiment": "negative",
+            "rating": 1,
+            "main_points": [
+              "matter",
+              "critical",
+              "importance",
+              "requiring",
+              "immediate",
+              "escalation"
+            ]
+          },
+          "reason": "negative sentiment with rating 1-2; high-risk keyword match: critical"
+        }
+      }
+    },
+    {
+      "review_id": "rev-009",
+      "date": "2025-10-06",
+      "rating": 2,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 1.0,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 2,
+        "rating_band": "negative",
+        "rating_is_low": true,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "color mismatch",
+        "poor quality",
+        "disappointed",
+        "returning item"
+      ],
+      "urgency": {
+        "is_urgent": true,
+        "route": "human_review",
+        "urgency_score": 1.0,
+        "decision_source": "rules_first_pass",
+        "reason": "negative sentiment with rating 1-2",
+        "rule_gate": {
+          "escalate_direct": true,
+          "matched_keywords": [],
+          "negative_and_low_rating": true,
+          "features": {
+            "sentiment": "negative",
+            "rating": 2,
+            "main_points": [
+              "color mismatch",
+              "poor quality",
+              "disappointed",
+              "returning item"
+            ]
+          },
+          "reason": "negative sentiment with rating 1-2"
+        }
+      }
+    },
+    {
+      "review_id": "rev-010",
+      "date": "2025-10-05",
+      "rating": 5,
+      "tone": "positive",
+      "sentiment": {
+        "label": "positive",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 5,
+        "rating_band": "positive",
+        "rating_is_low": false,
+        "rating_is_high": true
+      },
+      "main_points": [
+        "fantastic product",
+        "works perfectly",
+        "happy with purchase"
+      ],
+      "urgency": {
+        "is_urgent": false,
+        "route": "llm_response",
+        "urgency_score": 0.0,
+        "decision_source": "llm_judge",
+        "reason": "The review is highly positive with a maximum rating and contains only positive key phrases. No escalation is necessary.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "positive",
+            "rating": 5,
+            "main_points": [
+              "fantastic product",
+              "works perfectly",
+              "happy with purchase"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    },
+    {
+      "review_id": "rev-011",
+      "date": "2025-10-04",
+      "rating": 3,
+      "tone": "negative",
+      "sentiment": {
+        "label": "negative",
+        "score": 0.999,
+        "source": "hf_transformers:siebert/sentiment-roberta-large-english"
+      },
+      "rating_signals": {
+        "rating": 3,
+        "rating_band": "mixed",
+        "rating_is_low": false,
+        "rating_is_high": false
+      },
+      "main_points": [
+        "warranty inquiry",
+        "support contact request",
+        "unclear manual",
+        "customer assistance needed"
+      ],
+      "urgency": {
+        "is_urgent": true,
+        "route": "human_review",
+        "urgency_score": 0.7,
+        "decision_source": "llm_judge",
+        "reason": "The review expresses negative sentiment, includes a support contact request, and indicates unresolved issues such as unclear manual and customer assistance needed. Human intervention is required to address the customer's concerns and provide appropriate support.",
+        "rule_gate": {
+          "escalate_direct": false,
+          "matched_keywords": [],
+          "negative_and_low_rating": false,
+          "features": {
+            "sentiment": "negative",
+            "rating": 3,
+            "main_points": [
+              "warranty inquiry",
+              "support contact request",
+              "unclear manual",
+              "customer assistance needed"
+            ]
+          },
+          "reason": "no direct escalation rule matched"
+        }
+      }
+    }
+  ]
+}
