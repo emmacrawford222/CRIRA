@@ -44,6 +44,12 @@ Run individual stages:
 - `python -m crira.pipeline.urgency`
 - `python -m crira.pipeline.response`
 
+Run the interactive web demo (demo mode):
+- `python -m crira.demo_app`
+- Open `http://127.0.0.1:8080/` for customer view.
+- Open `http://127.0.0.1:8080/admin` for human-review inbox.
+- In demo mode, positive `llm_response` items are delayed using `DEMO_POSITIVE_DELAY_SECONDS`.
+
 ## Outputs
 Generated in `outputs/`:
 - `review_redaction.json`
