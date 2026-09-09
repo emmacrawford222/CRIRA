@@ -9,17 +9,24 @@ Build a secure, production-ready review workflow that:
 - is resilient to prompt injection embedded in review text.
 
 ## 2) LLM selection and rationale
-- **Primary generation/judgement model**: GPT-4.1 family via API deployment.
-- **Why**:
-	- strong instruction-following for JSON-constrained outputs,
-	- reliable quality for customer-facing response writing,
-	- scalable API operation and managed uptime,
-	- practical balance between cost and quality using task-specific model settings.
+- **Model family**: GPT-4.1 via API deployment, with task-tiering by complexity.
+- **Rationale by task type**:
+	- `RESPONSE_MODEL`: use GPT-4.1 (higher capability tier) for customer-facing responses where empathy, tone control, policy adherence, and intent handling are most important.
+	- `URGENCY_MODEL`: use GPT-4.1 when LLM judgment is needed on borderline routing cases; this is a high-impact decision point.
+	- `ANALYSIS_MODEL`: use a lower-cost mini tier for structured key-point extraction where deterministic fallbacks exist and quality can be monitored with golden-set evaluation.
+	- Sentiment is handled by `SENTIMENT_MODEL` (`transformers`) with deterministic fallback.
+- **Why this split is cost-effective**:
+	- reserves the higher-cost model for high-risk/high-visibility tasks,
+	- uses cheaper inference for repetitive extraction tasks,
+	- maintains quality through schema constraints, fallbacks, and regression checks.
 
-Task-specific model variables:
+Task-specific model variables used in code:
+- `DEFAULT_MODEL`
+- `ADVANCED_MODEL`
 - `ANALYSIS_MODEL`
 - `URGENCY_MODEL`
 - `RESPONSE_MODEL`
+- `SENTIMENT_MODEL`
 
 ## 3) Ordered pipeline (implemented)
 Execution order:
@@ -42,6 +49,8 @@ Outputs (JSON only):
 - Urgency business flag is determined by explicit rule gate before LLM judge fallback.
 - LLM prompts are role- and constraint-driven, with strict output schemas.
 - Review text instructions cannot override routing policy.
+- Analysis keyword extraction applies injection-marker filtering so prompt-hijack text is not propagated into downstream response context.
+- Injection-focused test cases (for example review 5 and review 8 patterns) are treated as adversarial input and validated through routing/output checks.
 
 ### PII control
 - Regex + NLP-supported detection for common PII classes.
@@ -63,6 +72,8 @@ First-pass hard rules:
 - Raw review rule gate can set pre-analysis `expedite` (never instruction-driven).
 - Negative sentiment + rating 1/2 -> human review.
 - High-risk key phrases -> human review.
+- Explicit contact/support request phrases -> human review.
+- Mixed sentiment is not automatically escalated; mixed reviews use rule + judge flow unless hard rules match.
 
 Else:
 - LLM judge decides escalation route (`human_review` vs `llm_response`).
@@ -71,19 +82,22 @@ Else:
 - Uses prior pipeline insights only (tone, sentiment, rating signals, main points, urgency route).
 - Positive: appreciative response.
 - Human-review flagged: confirms active review by support team.
-- Neutral: empty response by design.
+- Neutral + non-escalated: empty response by design.
+- Neutral + human-review route: include support follow-up wording (someone will review/reach out).
 - Internal support flag is explicit in response outputs for escalated/urgent records.
 
 ### Deployment policy: response timing strategy
 - For `human_review` route: immediate internal queueing, no artificial delay.
-- For positive-only `llm_response` route: add a small dispatch delay window (for example 2-10 minutes) in delivery orchestration.
-- Rationale: avoids "instant bot" perception and improves perceived sincerity while preserving SLA for urgent issues.
+- For `llm_response` with negative tone: event-driven immediate dispatch.
+- For `llm_response` with positive tone: delayed batch dispatch every 30-60 minutes (or equivalent Cloud Tasks schedule window).
+- Rationale: immediate response for complaints/issues, but slower batched positives to reduce "instant bot" feel and improve perceived sincerity.
 - Implementation point: delay should be applied in outbound delivery worker, not in model runtime.
 
 ## 8) Production deployment plan (GCP)
 Recommended services:
 - Cloud Run service for pipeline API/worker
-- Cloud Scheduler + Pub/Sub for batch triggers
+- Pub/Sub for event-driven triggers from website/app backend
+- Cloud Scheduler + Pub/Sub optional cadence trigger for 30-60 minute batch windows
 - Cloud Tasks for delayed outbound response dispatch (positive non-urgent responses)
 - Cloud Storage for input/output artifacts
 - Secret Manager for API keys

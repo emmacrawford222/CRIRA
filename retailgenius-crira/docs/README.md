@@ -20,6 +20,21 @@ Only redacted text is used in model-driven stages.
 	- Copy `.env.example` to `.env`
 	- Fill model deployment values and API credentials
 
+## Environment and Key Handling
+- OpenAI credentials used during testing were stored in a local `.env` file only and are not committed to the repository.
+- A matching template is provided in `.env.example`.
+- Variables expected by the current codebase:
+	- `OPENAI_ENDPOINT`
+	- `OPENAI_API_KEY`
+	- `OPENAI_API_VERSION`
+	- `ANALYSIS_MODEL`
+	- `URGENCY_MODEL`
+	- `RESPONSE_MODEL`
+	- `DEFAULT_MODEL`
+	- `ADVANCED_MODEL`
+	- `SENTIMENT_MODEL`
+	- `URGENCY_THRESHOLD`
+
 ## Run
 Run the full pipeline:
 - `python -m crira.pipeline.orchestrator`
