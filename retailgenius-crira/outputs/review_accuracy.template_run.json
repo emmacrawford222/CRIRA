@@ -1,0 +1,316 @@
+{
+  "ground_truth_reviews": 11,
+  "total_checks_considered": 44,
+  "total_checks_matched": 41,
+  "overall_accuracy_pct": 93.18,
+  "metrics": {
+    "sentiment": {
+      "matched": 9.0,
+      "considered": 11.0,
+      "accuracy_pct": 81.82
+    },
+    "expedite": {
+      "matched": 10.0,
+      "considered": 11.0,
+      "accuracy_pct": 90.91
+    },
+    "route": {
+      "matched": 11.0,
+      "considered": 11.0,
+      "accuracy_pct": 100.0
+    },
+    "internal_support_flag": {
+      "matched": 11.0,
+      "considered": 11.0,
+      "accuracy_pct": 100.0
+    },
+    "key_issues_praise": {
+      "matched": 0.0,
+      "considered": 0.0,
+      "avg_jaccard": 0.0,
+      "accuracy_pct": 0.0
+    },
+    "summary_contains": {
+      "matched": 0.0,
+      "considered": 0.0,
+      "accuracy_pct": 0.0
+    }
+  },
+  "per_review": [
+    {
+      "review_id": "rev-001",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "positive",
+          "actual": "positive"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-002",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "negative",
+          "actual": "negative"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        "route": {
+          "ok": true,
+          "expected": "human_review",
+          "actual": "human_review"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "review_id": "rev-003",
+      "checks": {
+        "sentiment": {
+          "ok": false,
+          "expected": "neutral",
+          "actual": "positive"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-004",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "positive",
+          "actual": "positive"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-005",
+      "checks": {
+        "sentiment": {
+          "ok": false,
+          "expected": "neutral",
+          "actual": "negative"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-006",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "negative",
+          "actual": "negative"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        "route": {
+          "ok": true,
+          "expected": "human_review",
+          "actual": "human_review"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "review_id": "rev-007",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "positive",
+          "actual": "positive"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-008",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "negative",
+          "actual": "negative"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        "route": {
+          "ok": true,
+          "expected": "human_review",
+          "actual": "human_review"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "review_id": "rev-009",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "negative",
+          "actual": "negative"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        },
+        "route": {
+          "ok": true,
+          "expected": "human_review",
+          "actual": "human_review"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "review_id": "rev-010",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "positive",
+          "actual": "positive"
+        },
+        "expedite": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        },
+        "route": {
+          "ok": true,
+          "expected": "llm_response",
+          "actual": "llm_response"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": false,
+          "actual": false
+        }
+      }
+    },
+    {
+      "review_id": "rev-011",
+      "checks": {
+        "sentiment": {
+          "ok": true,
+          "expected": "neutral",
+          "actual": "neutral"
+        },
+        "expedite": {
+          "ok": false,
+          "expected": false,
+          "actual": true
+        },
+        "route": {
+          "ok": true,
+          "expected": "human_review",
+          "actual": "human_review"
+        },
+        "internal_support_flag": {
+          "ok": true,
+          "expected": true,
+          "actual": true
+        }
+      }
+    }
+  ]
+}

@@ -11,13 +11,13 @@ from crira.models.prompts import RESPONSE_PROMPT
 
 
 def _fallback_response(tone: str, route: str) -> str:
-    if tone == "neutral":
-        return ""
     if route == "human_review":
         return (
             "Thank you for your message. We understand your concern and a member of our team is reviewing this now. "
             "We will follow up shortly with next steps."
         )
+    if tone == "neutral":
+        return ""
     if tone == "positive":
         return "Thank you for the lovely feedback. We are delighted you loved your experience with us."
     return "Thanks for sharing your feedback. We are sorry this was not the experience you expected and we are here to help."
@@ -55,8 +55,8 @@ def generate_response(
     tone = str(analysis.get("tone") or analysis.get("sentiment", {}).get("label") or "neutral").lower()
     route = str(urgency.get("route", "llm_response"))
 
-    # Neutral: intentionally no response as requested.
-    if tone == "neutral":
+    # Neutral + non-escalated: intentionally no response.
+    if tone == "neutral" and route != "human_review":
         return ""
 
     llm_client = LLMClient()
@@ -100,6 +100,7 @@ def run_batch_response(urgency_rows: list[Dict[str, Any]]) -> list[Dict[str, Any
     """Generate responses for all reviews from urgency output."""
     results: list[Dict[str, Any]] = []
     for row in urgency_rows:
+        urgency_payload = row.get("urgency", {}) if isinstance(row.get("urgency", {}), dict) else {}
         response_text = generate_response_from_urgency_row(row)
         results.append(
             {
@@ -108,8 +109,9 @@ def run_batch_response(urgency_rows: list[Dict[str, Any]]) -> list[Dict[str, Any
                 "rating": row.get("rating"),
                 "tone": row.get("tone"),
                 "main_points": row.get("main_points", []),
-                "route": row.get("urgency", {}).get("route"),
-                "decision_source": row.get("urgency", {}).get("decision_source"),
+                "route": urgency_payload.get("route"),
+                "decision_source": urgency_payload.get("decision_source"),
+                "internal_support_flag": bool(urgency_payload.get("is_urgent") or urgency_payload.get("route") == "human_review"),
                 "response": response_text,
             }
         )

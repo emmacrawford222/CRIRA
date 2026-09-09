@@ -22,6 +22,69 @@ HIGH_RISK_KEYWORDS = {
     "chargeback",
 }
 
+CONTACT_REQUEST_PHRASES = {
+    "contact me",
+    "call me",
+    "reach out",
+    "please contact",
+    "someone contact",
+    "customer support contact",
+    "get in touch",
+}
+
+EXPEDITE_RAW_PHRASES = {
+    "urgent",
+    "asap",
+    "immediately",
+    "dangerous",
+    "safety issue",
+    "hospital",
+    "fire",
+    "smoke",
+    "exploded",
+    "lawsuit",
+    "legal",
+    "fraud",
+    "chargeback",
+    "data breach",
+    "stolen",
+    "contact me",
+    "call me",
+    "reach out",
+    "get in touch",
+}
+
+
+def determine_expedite_from_raw(review_text: str, rating: Any = None) -> Dict[str, Any]:
+    """Determine an internal expedite flag from business rules on raw review content."""
+    lowered = str(review_text or "").lower()
+
+    matched_phrases = sorted([phrase for phrase in EXPEDITE_RAW_PHRASES if phrase in lowered])
+
+    parsed_rating = None
+    try:
+        parsed_rating = int(rating) if rating is not None else None
+    except Exception:
+        parsed_rating = None
+
+    low_rating = parsed_rating in {1, 2}
+    has_explicit_urgent_signal = bool(matched_phrases)
+    expedite = bool(low_rating or has_explicit_urgent_signal)
+
+    reasons: List[str] = []
+    if low_rating:
+        reasons.append("rating 1-2")
+    if matched_phrases:
+        reasons.append(f"raw urgency phrases: {', '.join(matched_phrases)}")
+
+    return {
+        "expedite": expedite,
+        "reason": "; ".join(reasons) if reasons else "no raw urgency rule matched",
+        "matched_phrases": matched_phrases,
+        "rating": parsed_rating,
+        "source": "raw_rule_gate",
+    }
+
 
 def _extract_urgency_features(analysis: Dict[str, Any]) -> Dict[str, Any]:
     """Extract only the urgency inputs allowed by workflow design."""
@@ -43,6 +106,7 @@ def _extract_urgency_features(analysis: Dict[str, Any]) -> Dict[str, Any]:
         "sentiment": sentiment_label,
         "rating": rating,
         "main_points": normalized_points,
+        "expedite": bool(analysis.get("expedite", False)),
     }
 
 
@@ -52,21 +116,29 @@ def _first_pass_rule_assessment(analysis: Dict[str, Any]) -> Dict[str, Any]:
     sentiment_label = features["sentiment"]
     rating = features["rating"]
     points_text = " | ".join(features["main_points"])
+    precomputed_expedite = bool(features.get("expedite", False))
     matched_keywords = sorted([kw for kw in HIGH_RISK_KEYWORDS if kw in points_text])
+    matched_contact_requests = sorted([phrase for phrase in CONTACT_REQUEST_PHRASES if phrase in points_text])
 
     rating_low = rating in {1, 2}
     negative_and_low = sentiment_label == "negative" and rating_low
 
-    should_escalate_now = bool(matched_keywords or negative_and_low)
+    should_escalate_now = bool(precomputed_expedite or matched_keywords or matched_contact_requests or negative_and_low)
     reason_parts: List[str] = []
+    if precomputed_expedite:
+        reason_parts.append("precomputed expedite rule matched")
     if negative_and_low:
         reason_parts.append("negative sentiment with rating 1-2")
     if matched_keywords:
         reason_parts.append(f"high-risk keyword match: {', '.join(matched_keywords)}")
+    if matched_contact_requests:
+        reason_parts.append(f"contact request detected: {', '.join(matched_contact_requests)}")
 
     return {
         "escalate_direct": should_escalate_now,
+        "precomputed_expedite": precomputed_expedite,
         "matched_keywords": matched_keywords,
+        "matched_contact_requests": matched_contact_requests,
         "negative_and_low_rating": negative_and_low,
         "features": features,
         "reason": "; ".join(reason_parts) if reason_parts else "no direct escalation rule matched",
@@ -143,6 +215,16 @@ def classify_urgency(
             rule_gate=rule_gate,
         )
 
+    # Policy: neutral reviews default to LLM response unless other hard rules already escalated.
+    if rule_gate.get("features", {}).get("sentiment") == "neutral":
+        return _route_payload(
+            escalate_to_human=False,
+            decision_source="neutral_default_policy",
+            reason="neutral sentiment defaults to llm_response",
+            score=0.0,
+            rule_gate=rule_gate,
+        )
+
     llm_client = llm_client or LLMClient()
     llm_result = _llm_judge(analysis, llm_client)
     if llm_result["ok"]:
@@ -173,6 +255,7 @@ def run_batch_urgency(review_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]
         analysis_input = {
             "sentiment": analysis.get("sentiment"),
             "tone": analysis.get("tone"),
+            "expedite": analysis.get("expedite", False),
             "rating": row.get("rating"),
             "rating_signals": analysis.get("rating_signals"),
             "main_points": analysis.get("main_points", []),

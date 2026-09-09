@@ -14,7 +14,8 @@
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "We're thrilled to hear you love the fast brewing and quiet operation, and that your coffee is just right—thanks for sharing your wonderful experience!"
+      "internal_support_flag": false,
+      "response": "We're thrilled to hear you enjoyed the fast brewing and quiet operation, and that your coffee turned out perfectly! Thank you for sharing your satisfaction with us."
     },
     {
       "review_id": "rev-002",
@@ -29,7 +30,8 @@
       ],
       "route": "human_review",
       "decision_source": "rules_first_pass",
-      "response": "We're truly sorry your order arrived in unacceptable condition after such a long wait—someone is reviewing your feedback now and will ensure a manager follows up with you as soon as possible."
+      "internal_support_flag": true,
+      "response": "We're truly sorry your order arrived in unacceptable condition after a long wait. Someone is reviewing this now and will be in touch as soon as possible."
     },
     {
       "review_id": "rev-003",
@@ -43,7 +45,8 @@
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "We're glad your order arrived on time and matched the description, and that the packaging met your needs—thanks for sharing your experience!"
+      "internal_support_flag": false,
+      "response": "We're glad your order arrived on time and matched the description, and appreciate your feedback on the packaging. Thank you for sharing your experience with us!"
     },
     {
       "review_id": "rev-004",
@@ -52,13 +55,14 @@
       "tone": "positive",
       "main_points": [
         "best service ever",
-        "highly satisfied",
+        "five stars",
         "loyal customer",
         "request for coupon"
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "We're thrilled to hear you're so satisfied with our service and appreciate your loyalty! We frequently have promotions and send out coupons, so please keep an eye on your inbox for future offers."
+      "internal_support_flag": false,
+      "response": "Thank you so much for your kind words and loyalty! We frequently have promotions and send out coupons, so please keep an eye on your inbox for future offers."
     },
     {
       "review_id": "rev-005",
@@ -71,7 +75,8 @@
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "Thank you for sharing your feedback—we appreciate your honesty and are glad the product meets your basic needs. If there’s anything specific we can do to improve your experience, please let us know."
+      "internal_support_flag": false,
+      "response": "Thank you for sharing your feedback—we appreciate your honesty and are always working to improve our products. If you have any suggestions, we'd love to hear them."
     },
     {
       "review_id": "rev-006",
@@ -86,7 +91,8 @@
       ],
       "route": "human_review",
       "decision_source": "rules_first_pass",
-      "response": "We're truly sorry your package was left in the rain and arrived damaged due to courier negligence—someone is reviewing your case now and will follow up regarding your replacement request."
+      "internal_support_flag": true,
+      "response": "Thank you for sharing your experience regarding the damaged delivery and courier issue; someone is reviewing this now to ensure we address your concerns appropriately."
     },
     {
       "review_id": "rev-007",
@@ -100,7 +106,8 @@
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "We're so glad you had a wonderful experience and found our website easy to use—it's fantastic to hear the product exceeded your expectations! Thank you for sharing your feedback."
+      "internal_support_flag": false,
+      "response": "Thank you for sharing your wonderful experience! We're delighted to hear our website was easy to navigate and that your product exceeded expectations."
     },
     {
       "review_id": "rev-008",
@@ -117,7 +124,8 @@
       ],
       "route": "human_review",
       "decision_source": "rules_first_pass",
-      "response": "We understand the critical importance of your concern and want you to know that someone is reviewing this now to ensure it receives immediate attention. Thank you for bringing this to our notice."
+      "internal_support_flag": true,
+      "response": "Thank you for sharing your concerns; someone is reviewing this now to ensure your issue receives the attention it deserves."
     },
     {
       "review_id": "rev-009",
@@ -132,7 +140,8 @@
       ],
       "route": "human_review",
       "decision_source": "rules_first_pass",
-      "response": "Thank you for sharing your feedback about the color mismatch and quality concerns; someone is reviewing this now to ensure your experience is addressed properly. We appreciate your honesty and are sorry you were disappointed."
+      "internal_support_flag": true,
+      "response": "We're sorry to hear about your disappointment with the color and quality of your item—someone is reviewing this now to ensure we address your concerns appropriately. Thank you for sharing your feedback."
     },
     {
       "review_id": "rev-010",
@@ -146,13 +155,14 @@
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
-      "response": "We're thrilled to hear you're happy with your purchase and that the product is working perfectly for you—thanks so much for your fantastic feedback!"
+      "internal_support_flag": false,
+      "response": "Thank you so much for sharing your experience—we’re thrilled to hear you’re happy with your purchase and that the product works perfectly for you!"
     },
     {
       "review_id": "rev-011",
       "date": "2025-10-04",
       "rating": 3,
-      "tone": "negative",
+      "tone": "neutral",
       "main_points": [
         "warranty inquiry",
         "support contact request",
@@ -160,8 +170,9 @@
         "customer assistance needed"
       ],
       "route": "human_review",
-      "decision_source": "llm_judge",
-      "response": "Thank you for sharing your concerns about the warranty and manual—someone from our team is reviewing your feedback now to ensure you get the assistance you need."
+      "decision_source": "rules_first_pass",
+      "internal_support_flag": true,
+      "response": "Someone is reviewing this now to ensure you get the assistance you need."
     }
   ]
 }

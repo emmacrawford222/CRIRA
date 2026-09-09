@@ -28,10 +28,12 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and key phrases indicating satisfaction; no issues or concerns are present that require human intervention.",
+        "reason": "The review is highly positive with a maximum rating and key phrases indicating satisfaction. No issues or concerns are present that require human intervention.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "positive",
@@ -41,7 +43,8 @@
               "quiet operation",
               "perfect coffee",
               "high customer satisfaction"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -74,10 +77,12 @@
         "route": "human_review",
         "urgency_score": 1.0,
         "decision_source": "rules_first_pass",
-        "reason": "negative sentiment with rating 1-2",
+        "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2",
         "rule_gate": {
           "escalate_direct": true,
+          "precomputed_expedite": true,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": true,
           "features": {
             "sentiment": "negative",
@@ -87,9 +92,10 @@
               "unacceptable condition",
               "long wait time",
               "request manager callback"
-            ]
+            ],
+            "expedite": true
           },
-          "reason": "negative sentiment with rating 1-2"
+          "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2"
         }
       }
     },
@@ -122,7 +128,9 @@
         "reason": "The review is positive, the rating is neutral, and the main points indicate satisfactory service without any issues requiring escalation.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "positive",
@@ -131,7 +139,8 @@
               "on-time delivery",
               "accurate product description",
               "adequate packaging"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -155,7 +164,7 @@
       },
       "main_points": [
         "best service ever",
-        "highly satisfied",
+        "five stars",
         "loyal customer",
         "request for coupon"
       ],
@@ -164,20 +173,23 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and no negative or concerning phrases. The request for a coupon is not urgent or problematic.",
+        "reason": "The review is highly positive with a maximum rating and contains no complaints or concerning issues. The request for a coupon is not urgent and does not require escalation.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "positive",
             "rating": 5,
             "main_points": [
               "best service ever",
-              "highly satisfied",
+              "five stars",
               "loyal customer",
               "request for coupon"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -208,10 +220,12 @@
         "route": "llm_response",
         "urgency_score": 0.2,
         "decision_source": "llm_judge",
-        "reason": "The review expresses mild dissatisfaction but is not strongly negative or urgent; the rating is neutral and key phrases indicate the product is acceptable.",
+        "reason": "The review expresses mild dissatisfaction but is not strongly negative and lacks urgent or concerning key phrases.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "negative",
@@ -219,7 +233,8 @@
             "main_points": [
               "product is okay",
               "does the job"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -252,10 +267,12 @@
         "route": "human_review",
         "urgency_score": 1.0,
         "decision_source": "rules_first_pass",
-        "reason": "negative sentiment with rating 1-2",
+        "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2",
         "rule_gate": {
           "escalate_direct": true,
+          "precomputed_expedite": true,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": true,
           "features": {
             "sentiment": "negative",
@@ -265,9 +282,10 @@
               "damaged delivery",
               "courier negligence",
               "request for replacement"
-            ]
+            ],
+            "expedite": true
           },
-          "reason": "negative sentiment with rating 1-2"
+          "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2"
         }
       }
     },
@@ -297,10 +315,12 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and no negative or concerning key phrases. No escalation is required.",
+        "reason": "The review is highly positive with a maximum rating and no negative or concerning key phrases. No escalation is needed.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "positive",
@@ -309,7 +329,8 @@
               "wonderful experience",
               "easy to navigate website",
               "product exceeded expectations"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -344,12 +365,14 @@
         "route": "human_review",
         "urgency_score": 1.0,
         "decision_source": "rules_first_pass",
-        "reason": "negative sentiment with rating 1-2; high-risk keyword match: critical",
+        "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2; high-risk keyword match: critical",
         "rule_gate": {
           "escalate_direct": true,
+          "precomputed_expedite": true,
           "matched_keywords": [
             "critical"
           ],
+          "matched_contact_requests": [],
           "negative_and_low_rating": true,
           "features": {
             "sentiment": "negative",
@@ -361,9 +384,10 @@
               "requiring",
               "immediate",
               "escalation"
-            ]
+            ],
+            "expedite": true
           },
-          "reason": "negative sentiment with rating 1-2; high-risk keyword match: critical"
+          "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2; high-risk keyword match: critical"
         }
       }
     },
@@ -394,10 +418,12 @@
         "route": "human_review",
         "urgency_score": 1.0,
         "decision_source": "rules_first_pass",
-        "reason": "negative sentiment with rating 1-2",
+        "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2",
         "rule_gate": {
           "escalate_direct": true,
+          "precomputed_expedite": true,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": true,
           "features": {
             "sentiment": "negative",
@@ -407,9 +433,10 @@
               "poor quality",
               "disappointed",
               "returning item"
-            ]
+            ],
+            "expedite": true
           },
-          "reason": "negative sentiment with rating 1-2"
+          "reason": "precomputed expedite rule matched; negative sentiment with rating 1-2"
         }
       }
     },
@@ -439,10 +466,12 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and contains only positive key phrases. No escalation is necessary.",
+        "reason": "The review is highly positive with a maximum rating and contains only positive key phrases. No issues or concerns are mentioned, so escalation is not necessary.",
         "rule_gate": {
           "escalate_direct": false,
+          "precomputed_expedite": false,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
             "sentiment": "positive",
@@ -451,7 +480,8 @@
               "fantastic product",
               "works perfectly",
               "happy with purchase"
-            ]
+            ],
+            "expedite": false
           },
           "reason": "no direct escalation rule matched"
         }
@@ -461,9 +491,9 @@
       "review_id": "rev-011",
       "date": "2025-10-04",
       "rating": 3,
-      "tone": "negative",
+      "tone": "neutral",
       "sentiment": {
-        "label": "negative",
+        "label": "neutral",
         "score": 0.999,
         "source": "hf_transformers:siebert/sentiment-roberta-large-english"
       },
@@ -482,24 +512,27 @@
       "urgency": {
         "is_urgent": true,
         "route": "human_review",
-        "urgency_score": 0.7,
-        "decision_source": "llm_judge",
-        "reason": "The review expresses negative sentiment, includes a support contact request, and indicates unresolved issues such as unclear manual and customer assistance needed. Human intervention is required to address the customer's concerns and provide appropriate support.",
+        "urgency_score": 1.0,
+        "decision_source": "rules_first_pass",
+        "reason": "precomputed expedite rule matched",
         "rule_gate": {
-          "escalate_direct": false,
+          "escalate_direct": true,
+          "precomputed_expedite": true,
           "matched_keywords": [],
+          "matched_contact_requests": [],
           "negative_and_low_rating": false,
           "features": {
-            "sentiment": "negative",
+            "sentiment": "neutral",
             "rating": 3,
             "main_points": [
               "warranty inquiry",
               "support contact request",
               "unclear manual",
               "customer assistance needed"
-            ]
+            ],
+            "expedite": true
           },
-          "reason": "no direct escalation rule matched"
+          "reason": "precomputed expedite rule matched"
         }
       }
     }

@@ -31,6 +31,14 @@ def test_postcode_redaction(redactor):
     assert "SW1A 1AA" in result.pii_map["postcode"]
 
 
+def test_address_redaction(redactor):
+    text = "Please send the replacement to 221B Baker Street as soon as possible."
+    result = redactor.redact(text)
+
+    assert "[PII_ADDRESS]" in result.redacted_text
+    assert "221B Baker Street" in result.pii_map["address"]
+
+
 def test_credit_card_redaction(redactor):
     text = "My card number is 4111 1111 1111 1111."
     result = redactor.redact(text)

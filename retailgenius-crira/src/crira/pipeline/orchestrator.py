@@ -9,13 +9,19 @@ from typing import Dict, Any, List
 from crira.pii.redactor import redact_text, redact_review
 from crira.pipeline.analysis import analyze_review, run_batch_analysis, write_analysis_outputs
 from crira.pipeline.response import generate_response, run_batch_response, write_response_outputs
-from crira.pipeline.urgency import classify_urgency, run_batch_urgency, write_urgency_outputs
+from crira.pipeline.urgency import (
+    classify_urgency,
+    determine_expedite_from_raw,
+    run_batch_urgency,
+    write_urgency_outputs,
+)
 
 
 def run_pipeline(review_text: str) -> Dict[str, Any]:
     """Backward-compatible text-only pipeline entrypoint."""
+    expedite_gate = determine_expedite_from_raw(review_text=review_text)
     redacted, pii_map = redact_text(review_text)
-    analysis = analyze_review({"review_text": redacted})
+    analysis = analyze_review({"review_text": redacted, "expedite": expedite_gate["expedite"]})
     urgency = classify_urgency(analysis)
     response = generate_response(redacted, analysis=analysis, urgency=urgency)
 
@@ -23,6 +29,7 @@ def run_pipeline(review_text: str) -> Dict[str, Any]:
         "input": review_text,
         "redacted": redacted,
         "pii_map": pii_map,
+        "expedite_gate": expedite_gate,
         "urgency": urgency,
         "analysis": analysis,
         "response": response,
@@ -31,7 +38,12 @@ def run_pipeline(review_text: str) -> Dict[str, Any]:
 
 def run_review_pipeline(review: Dict[str, Any]) -> Dict[str, Any]:
     """Run CRIRA workflow for one full review object."""
+    expedite_gate = determine_expedite_from_raw(
+        review_text=str(review.get("review_text", "")),
+        rating=review.get("rating"),
+    )
     redacted_review = redact_review(review)
+    redacted_review["expedite"] = expedite_gate["expedite"]
     redacted_text = redacted_review.get("review_text", "")
 
     analysis = analyze_review(redacted_review)
@@ -41,6 +53,7 @@ def run_review_pipeline(review: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "review": redacted_review,
         "llm_input": {"review_text": redacted_text},
+        "expedite_gate": expedite_gate,
         "analysis": analysis,
         "urgency": urgency,
         "response": response,
@@ -93,7 +106,7 @@ def build_human_review_queue(
                     "customer_name": original.get("customer_name"),
                     "emails": pii_map.get("email", []),
                     "phones": pii_map.get("phone", []),
-                    "addresses_or_postcodes": pii_map.get("postcode", []),
+                    "addresses_or_postcodes": pii_map.get("address", []) + pii_map.get("postcode", []),
                 },
             }
         )
@@ -112,7 +125,18 @@ def run_dataset_pipeline(
     payload = json.loads(input_file.read_text(encoding="utf-8"))
     original_reviews = payload.get("reviews", [])
 
-    redacted_reviews = [redact_review(review) for review in original_reviews]
+    redacted_reviews = []
+    for review in original_reviews:
+        expedite_gate = determine_expedite_from_raw(
+            review_text=str(review.get("review_text", "")),
+            rating=review.get("rating"),
+        )
+        redacted_review = redact_review(review)
+        redacted_review["expedite"] = expedite_gate["expedite"]
+        redacted_review["expedite_reason"] = expedite_gate["reason"]
+        redacted_review["expedite_source"] = expedite_gate["source"]
+        redacted_reviews.append(redacted_review)
+
     redaction_output = out_dir / "review_redaction.json"
     _write_json(redaction_output, {"count": len(redacted_reviews), "reviews": redacted_reviews})
 

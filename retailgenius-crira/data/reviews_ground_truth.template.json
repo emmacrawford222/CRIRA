@@ -1,0 +1,103 @@
+{
+  "reviews": [
+    {
+      "review_id": "rev-001",
+      "sentiment": "positive",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-002",
+      "sentiment": "negative",
+      "expedite": true,
+      "route": "human_review",
+      "internal_support_flag": true,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-003",
+      "sentiment": "neutral",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-004",
+      "sentiment": "positive",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-005",
+      "sentiment": "neutral",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-006",
+      "sentiment": "negative",
+      "expedite": true,
+      "route": "human_review",
+      "internal_support_flag": true,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-007",
+      "sentiment": "positive",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-008",
+      "sentiment": "negative",
+      "expedite": true,
+      "route": "human_review",
+      "internal_support_flag": true,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-009",
+      "sentiment": "negative",
+      "expedite": true,
+      "route": "human_review",
+      "internal_support_flag": true,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-010",
+      "sentiment": "positive",
+      "expedite": false,
+      "route": "llm_response",
+      "internal_support_flag": false,
+      "key_issues_praise": [],
+      "summary_contains": []
+    },
+    {
+      "review_id": "rev-011",
+      "sentiment": "neutral",
+      "expedite": false,
+      "route": "human_review",
+      "internal_support_flag": true,
+      "key_issues_praise": [],
+      "summary_contains": []
+    }
+  ]
+}

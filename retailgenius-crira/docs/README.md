@@ -39,5 +39,23 @@ Generated in `outputs/`:
 
 `human_review_queue.json` includes only escalated records and joins operational recontact details for human agents.
 
+## Ground Truth Accuracy Check
+To measure accuracy on the supplied review dataset, use a human-labeled ground truth file.
+
+1. Copy `data/reviews_ground_truth.template.json` to `data/reviews_ground_truth.json`.
+2. Fill expected values per review:
+	- `sentiment` (`positive|negative|neutral|mixed`)
+	- `expedite` (`true|false`)
+	- `route` (`human_review|llm_response`)
+	- `internal_support_flag` (`true|false`)
+	- `key_issues_praise` (list of expected points)
+	- `summary_contains` (keywords that should appear in summary)
+3. Run evaluation:
+	- `python -m crira.pipeline.evaluate --ground-truth data/reviews_ground_truth.json`
+
+Evaluation output:
+- `outputs/review_accuracy.json`
+- per-metric accuracy percentages and overall accuracy percentage.
+
 ## Testing
 - `python -m pytest`

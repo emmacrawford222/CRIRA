@@ -10,12 +10,16 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Jane Doe"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-002",
@@ -28,6 +32,7 @@
           "07700 900123"
         ],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [
           "order #XYZ-123"
@@ -35,7 +40,10 @@
         "name": [
           "Anonymous"
         ]
-      }
+      },
+      "expedite": true,
+      "expedite_reason": "rating 1-2; raw urgency phrases: call me",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-003",
@@ -46,12 +54,16 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Reviewer78"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-004",
@@ -64,12 +76,16 @@
         ],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Michael Chen"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-005",
@@ -80,31 +96,40 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "CheekyUser"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-006",
       "rating": 1,
       "date": "2025-10-09",
-      "review_text": "The courier left my package on the doorstep in the rain! It's completely ruined. My address is 123 [PII_NAME], Anytown, London, [PII_POSTCODE]. I expect a replacement sent immediately.",
+      "review_text": "The courier left my package on the doorstep in the rain! It's completely ruined. My address is [PII_ADDRESS], Anytown, London, [PII_POSTCODE]. I expect a replacement sent immediately.",
       "pii_map": {
         "email": [],
         "phone": [],
         "postcode": [
           "AT1 2BC"
         ],
+        "address": [
+          "123 Fake Street"
+        ],
         "credit_card": [],
         "order_id": [],
         "name": [
-          "Fake Street",
           "Upset Customer"
         ]
-      }
+      },
+      "expedite": true,
+      "expedite_reason": "rating 1-2; raw urgency phrases: immediately",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-007",
@@ -115,12 +140,16 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Happy Buyer"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-008",
@@ -131,6 +160,7 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [
           "FGH-901"
@@ -138,7 +168,10 @@
         "name": [
           "Sarah Smith"
         ]
-      }
+      },
+      "expedite": true,
+      "expedite_reason": "rating 1-2",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-009",
@@ -149,12 +182,16 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Disappointed"
         ]
-      }
+      },
+      "expedite": true,
+      "expedite_reason": "rating 1-2",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-010",
@@ -165,6 +202,7 @@
         "email": [],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [
           "order ID LMN-456"
@@ -172,7 +210,10 @@
         "name": [
           "TechGuru"
         ]
-      }
+      },
+      "expedite": false,
+      "expedite_reason": "no raw urgency rule matched",
+      "expedite_source": "raw_rule_gate"
     },
     {
       "review_id": "rev-011",
@@ -185,12 +226,16 @@
         ],
         "phone": [],
         "postcode": [],
+        "address": [],
         "credit_card": [],
         "order_id": [],
         "name": [
           "Lisa"
         ]
-      }
+      },
+      "expedite": true,
+      "expedite_reason": "raw urgency phrases: contact me",
+      "expedite_source": "raw_rule_gate"
     }
   ]
 }

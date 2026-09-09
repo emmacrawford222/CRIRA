@@ -29,6 +29,10 @@ class PIIRedactor:
     EMAIL_PATTERN = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
     PHONE_PATTERN = re.compile(r"\+?\d[\d\-\s().]{7,}\d")
     POSTCODE_PATTERN = re.compile(r"\b([A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2})\b", re.IGNORECASE)
+    ADDRESS_PATTERN = re.compile(
+        r"\b\d{1,5}[A-Za-z]?\s+[A-Za-z0-9.,'\- ]{2,50}\s(?:Street|St|Road|Rd|Avenue|Ave|Lane|Ln|Drive|Dr|Boulevard|Blvd|Court|Ct|Way)\b",
+        re.IGNORECASE,
+    )
     CREDIT_CARD_PATTERN = re.compile(r"\b(?:\d[ -]*?){13,19}\b")
     ORDER_ID_PATTERN = re.compile(r"\b(?:order\s*(?:id)?\s*[:#-]?\s*)?[A-Z]{3}-\d{3}\b", re.IGNORECASE)
     INTRO_NAME_PATTERN = re.compile(r"\b(?:i am|i'm|im)\s+([A-Z][a-z]{1,30})\b", re.IGNORECASE)
@@ -38,6 +42,7 @@ class PIIRedactor:
         "email": "[PII_EMAIL]",
         "phone": "[PII_PHONE]",
         "postcode": "[PII_POSTCODE]",
+        "address": "[PII_ADDRESS]",
         "credit_card": "[PII_CARD]",
         "order_id": "[PII_ORDER_ID]",
         "name": "[PII_NAME]",
@@ -82,6 +87,7 @@ class PIIRedactor:
         redacted = self._replace(self.CREDIT_CARD_PATTERN, "credit_card", redacted)
         redacted = self._replace_phone(redacted)
         redacted = self._replace(self.POSTCODE_PATTERN, "postcode", redacted)
+        redacted = self._replace(self.ADDRESS_PATTERN, "address", redacted)
         redacted = self._replace(self.ORDER_ID_PATTERN, "order_id", redacted)
 
         # spaCy-based PERSON name redaction when model exists.
