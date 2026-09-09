@@ -1,6 +1,7 @@
 pyproject.toml
 src/crira/__init__.py
 src/crira/config.py
+src/crira/demo_app.py
 src/crira/models/__init__.py
 src/crira/models/llm_client.py
 src/crira/models/prompts.py
@@ -9,6 +10,7 @@ src/crira/pii/redactor.py
 src/crira/pipeline/__init__.py
 src/crira/pipeline/__main__.py
 src/crira/pipeline/analysis.py
+src/crira/pipeline/evaluate.py
 src/crira/pipeline/orchestrator.py
 src/crira/pipeline/response.py
 src/crira/pipeline/urgency.py

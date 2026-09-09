@@ -55,6 +55,10 @@ def generate_response(
     tone = str(analysis.get("tone") or analysis.get("sentiment", {}).get("label") or "neutral").lower()
     route = str(urgency.get("route", "llm_response"))
 
+    # Human-review responses must use deterministic support wording.
+    if route == "human_review":
+        return _fallback_response(tone=tone, route=route)
+
     # Neutral + non-escalated: intentionally no response.
     if tone == "neutral" and route != "human_review":
         return ""

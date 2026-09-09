@@ -8,6 +8,7 @@ def test_response_not_empty():
         urgency={"route": "human_review"},
     )
     assert len(response) > 0
+    assert "We understand your concern" in response
 
 
 def test_response_internal_support_flag_set_for_escalated_routes():

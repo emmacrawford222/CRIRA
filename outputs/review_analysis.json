@@ -190,15 +190,17 @@
         "summary": "The courier left my package on the doorstep in the rain! It's completely ruined.",
         "main_points": [
           "package left in rain",
-          "damaged delivery",
+          "package ruined",
           "courier negligence",
-          "request for replacement"
+          "request for replacement",
+          "delivery at doorstep"
         ],
         "key_issues_praise": [
           "package left in rain",
-          "damaged delivery",
+          "package ruined",
           "courier negligence",
-          "request for replacement"
+          "request for replacement",
+          "delivery at doorstep"
         ],
         "expedite": true,
         "main_points_source": "llm",
@@ -226,12 +228,12 @@
         "summary": "Wonderful experience from start to finish. The website was easy to navigate and the product exceeded my expectations.",
         "main_points": [
           "wonderful experience",
-          "easy to navigate website",
+          "easy website navigation",
           "product exceeded expectations"
         ],
         "key_issues_praise": [
           "wonderful experience",
-          "easy to navigate website",
+          "easy website navigation",
           "product exceeded expectations"
         ],
         "expedite": false,

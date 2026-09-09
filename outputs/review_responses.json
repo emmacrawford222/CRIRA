@@ -15,7 +15,7 @@
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "We're thrilled to hear you enjoyed the fast brewing and quiet operation, and that your coffee turned out perfectly! Thank you for sharing your satisfaction with us."
+      "response": "We're thrilled to hear you enjoyed the fast brewing and quiet operation, and that your coffee turned out perfect! Thank you for sharing your satisfaction with us."
     },
     {
       "review_id": "rev-002",
@@ -31,7 +31,7 @@
       "route": "human_review",
       "decision_source": "rules_first_pass",
       "internal_support_flag": true,
-      "response": "We're truly sorry your order arrived in unacceptable condition after a long wait. Someone is reviewing this now and will be in touch as soon as possible."
+      "response": "Thank you for your message. We understand your concern and a member of our team is reviewing this now. We will follow up shortly with next steps."
     },
     {
       "review_id": "rev-003",
@@ -46,7 +46,7 @@
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "We're glad your order arrived on time and matched the description, and appreciate your feedback on the packaging. Thank you for sharing your experience with us!"
+      "response": "We're glad to hear your order arrived on time and matched the description, and that the packaging met your expectations. Thank you for sharing your experience with us!"
     },
     {
       "review_id": "rev-004",
@@ -62,7 +62,7 @@
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "Thank you so much for your kind words and loyalty! We frequently have promotions and send out coupons, so please keep an eye on your inbox for future offers."
+      "response": "Thank you so much for your loyalty and wonderful feedback! We frequently have promotions and send out coupons, so please keep an eye on your inbox for future offers."
     },
     {
       "review_id": "rev-005",
@@ -76,7 +76,7 @@
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "Thank you for sharing your feedback—we appreciate your honesty and are always working to improve our products. If you have any suggestions, we'd love to hear them."
+      "response": "Thank you for your feedback—we appreciate your honesty and are glad the product meets your basic needs. If there's anything we can do to improve your experience, please let us know."
     },
     {
       "review_id": "rev-006",
@@ -85,14 +85,15 @@
       "tone": "negative",
       "main_points": [
         "package left in rain",
-        "damaged delivery",
+        "package ruined",
         "courier negligence",
-        "request for replacement"
+        "request for replacement",
+        "delivery at doorstep"
       ],
       "route": "human_review",
       "decision_source": "rules_first_pass",
       "internal_support_flag": true,
-      "response": "Thank you for sharing your experience regarding the damaged delivery and courier issue; someone is reviewing this now to ensure we address your concerns appropriately."
+      "response": "Thank you for your message. We understand your concern and a member of our team is reviewing this now. We will follow up shortly with next steps."
     },
     {
       "review_id": "rev-007",
@@ -101,13 +102,13 @@
       "tone": "positive",
       "main_points": [
         "wonderful experience",
-        "easy to navigate website",
+        "easy website navigation",
         "product exceeded expectations"
       ],
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "Thank you for sharing your wonderful experience! We're delighted to hear our website was easy to navigate and that your product exceeded expectations."
+      "response": "We're thrilled to hear you had a wonderful experience and found our website easy to navigate—it's great to know the product exceeded your expectations! Thank you for sharing your feedback."
     },
     {
       "review_id": "rev-008",
@@ -125,7 +126,7 @@
       "route": "human_review",
       "decision_source": "rules_first_pass",
       "internal_support_flag": true,
-      "response": "Thank you for sharing your concerns; someone is reviewing this now to ensure your issue receives the attention it deserves."
+      "response": "Thank you for your message. We understand your concern and a member of our team is reviewing this now. We will follow up shortly with next steps."
     },
     {
       "review_id": "rev-009",
@@ -141,7 +142,7 @@
       "route": "human_review",
       "decision_source": "rules_first_pass",
       "internal_support_flag": true,
-      "response": "We're sorry to hear about your disappointment with the color and quality of your item—someone is reviewing this now to ensure we address your concerns appropriately. Thank you for sharing your feedback."
+      "response": "Thank you for your message. We understand your concern and a member of our team is reviewing this now. We will follow up shortly with next steps."
     },
     {
       "review_id": "rev-010",
@@ -156,7 +157,7 @@
       "route": "llm_response",
       "decision_source": "llm_judge",
       "internal_support_flag": false,
-      "response": "Thank you so much for sharing your experience—we’re thrilled to hear you’re happy with your purchase and that the product works perfectly for you!"
+      "response": "We're thrilled to hear you're happy with your purchase and that the product works perfectly for you—thank you for sharing your fantastic experience!"
     },
     {
       "review_id": "rev-011",
@@ -172,7 +173,7 @@
       "route": "human_review",
       "decision_source": "rules_first_pass",
       "internal_support_flag": true,
-      "response": "Someone is reviewing this now to ensure you get the assistance you need."
+      "response": "Thank you for your message. We understand your concern and a member of our team is reviewing this now. We will follow up shortly with next steps."
     }
   ]
 }

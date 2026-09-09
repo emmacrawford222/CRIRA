@@ -125,7 +125,7 @@
         "route": "llm_response",
         "urgency_score": 0.1,
         "decision_source": "llm_judge",
-        "reason": "The review is positive, the rating is neutral, and the main points indicate satisfactory service without any issues requiring escalation.",
+        "reason": "The review is positive, the rating is neutral, and the main points indicate satisfactory service without any issues or complaints. No escalation is needed.",
         "rule_gate": {
           "escalate_direct": false,
           "precomputed_expedite": false,
@@ -173,7 +173,7 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and contains no complaints or concerning issues. The request for a coupon is not urgent and does not require escalation.",
+        "reason": "The review is highly positive with a maximum rating and no negative sentiment or urgent issues. The request for a coupon does not require escalation.",
         "rule_gate": {
           "escalate_direct": false,
           "precomputed_expedite": false,
@@ -220,7 +220,7 @@
         "route": "llm_response",
         "urgency_score": 0.2,
         "decision_source": "llm_judge",
-        "reason": "The review expresses mild dissatisfaction but is not strongly negative and lacks urgent or concerning key phrases.",
+        "reason": "The review expresses mild dissatisfaction but is not strongly negative or urgent; no concerning key phrases or requests for escalation.",
         "rule_gate": {
           "escalate_direct": false,
           "precomputed_expedite": false,
@@ -258,9 +258,10 @@
       },
       "main_points": [
         "package left in rain",
-        "damaged delivery",
+        "package ruined",
         "courier negligence",
-        "request for replacement"
+        "request for replacement",
+        "delivery at doorstep"
       ],
       "urgency": {
         "is_urgent": true,
@@ -279,9 +280,10 @@
             "rating": 1,
             "main_points": [
               "package left in rain",
-              "damaged delivery",
+              "package ruined",
               "courier negligence",
-              "request for replacement"
+              "request for replacement",
+              "delivery at doorstep"
             ],
             "expedite": true
           },
@@ -307,7 +309,7 @@
       },
       "main_points": [
         "wonderful experience",
-        "easy to navigate website",
+        "easy website navigation",
         "product exceeded expectations"
       ],
       "urgency": {
@@ -315,7 +317,7 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and no negative or concerning key phrases. No escalation is needed.",
+        "reason": "The review is highly positive with a top rating and no negative or concerning key phrases. No escalation is needed.",
         "rule_gate": {
           "escalate_direct": false,
           "precomputed_expedite": false,
@@ -327,7 +329,7 @@
             "rating": 5,
             "main_points": [
               "wonderful experience",
-              "easy to navigate website",
+              "easy website navigation",
               "product exceeded expectations"
             ],
             "expedite": false
@@ -466,7 +468,7 @@
         "route": "llm_response",
         "urgency_score": 0.0,
         "decision_source": "llm_judge",
-        "reason": "The review is highly positive with a maximum rating and contains only positive key phrases. No issues or concerns are mentioned, so escalation is not necessary.",
+        "reason": "The review is highly positive with a maximum rating and no negative or concerning key phrases; escalation is not required.",
         "rule_gate": {
           "escalate_direct": false,
           "precomputed_expedite": false,
