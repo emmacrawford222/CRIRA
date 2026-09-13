@@ -41,23 +41,6 @@ flowchart LR
 - Cost-aware option: scheduled batch trigger every 30 minutes to 1 hour using Cloud Scheduler.
 - Practical hybrid: event-driven for human-review and negative/mixed `llm_response`, delayed batch windows for positive `llm_response`.
 
-### 1.1) Routing end-state (current implementation)
-- `route = human_review`:
-    - enqueue immediately to internal human queue.
-    - do not delay with Cloud Tasks.
-- `route = llm_response` and tone is `negative` or `mixed`:
-    - generate/send promptly through response delivery worker.
-- `route = llm_response` and tone is `positive`:
-    - delay outbound send with Cloud Tasks (30-60 minute window).
-- `route = llm_response` and tone is `neutral`:
-    - current response stage returns empty string (no customer-send payload).
-    - treat as no-send unless policy is revised.
-
-### 1.2) Routing policy checks before production
-- Validate whether neutral non-escalated reviews should remain no-send versus short neutral acknowledgment.
-- Validate whether clearly positive low-risk reviews should bypass LLM judge to reduce cost/latency.
-- Keep current behavior for now, but require evaluation and canary evidence before policy lock.
-
 ### 2) What Cloud Scheduler -> Pub/Sub means
 - Cloud Scheduler is a timer.
 - At a configured interval (for example every 30 or 60 minutes), it sends a message to a Pub/Sub topic.
