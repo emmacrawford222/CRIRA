@@ -22,6 +22,21 @@ INJECTION_MARKERS = {
     "disregard previous",
 }
 
+# #IMPROVEMENTS_BACKLOG
+# 1) Sentiment fallback cascade:
+#    HF transformers -> VADER/TextBlob -> lexicon fallback.
+#    This gives better resilience and usually higher quality than lexicon-only fallback.
+# 3) Keyword fallback quality:
+#    Replace first-N token heuristic with TF-IDF keyphrase extraction.
+# 4) Stopword quality:
+#    Expand stopword list and add domain stopwords (for example: product, item, order, purchase).
+# 5) Injection hardening:
+#    Move from static marker matching to broader pattern scoring for prompt-injection language.
+# 6) Long-text handling:
+#    For very long reviews
+# 7) Observability:
+#    Emit metrics for fallback activation rate and parse failures for each stage.
+
 
 def _lexicon_hits(review_text: str) -> tuple[int, int]:
     positive_terms = {
@@ -114,7 +129,9 @@ def classify_sentiment(review_text: str) -> Dict[str, Any]:
 
 
 def extract_rating_signals(review: Dict[str, Any]) -> Dict[str, Any]:
-    """Extract non-LLM rating information for downstream logic."""
+    """Extract normalized rating features for deterministic downstream routing rules."""
+    # Even though rating is already a number, normalizing once here keeps routing code simple,
+    # deterministic, and robust to messy payload types (str/float/missing).
     rating_raw = review.get("rating")
     rating = int(rating_raw) if isinstance(rating_raw, (int, float, str)) and str(rating_raw).isdigit() else None
 
@@ -136,6 +153,8 @@ def extract_rating_signals(review: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _fallback_keywords(review_text: str, limit: int = 6) -> List[str]:
+    # Deterministic fallback when LLM keyword extraction is unavailable.
+    # Current heuristic is intentionally simple; upgrade candidate is TF-IDF or YAKE/RAKE.
     tokens = re.findall(r"[a-zA-Z]{4,}", review_text.lower())
     stop = {
         "this",
@@ -183,6 +202,8 @@ def _adjust_sentiment_with_context(
     rating_signals: Dict[str, Any],
 ) -> str:
     """Keep support-question reviews neutral unless explicit negative signals exist."""
+    # This is not a mixed-rating handler; it is a targeted false-positive reducer.
+    # Without this, support-question reviews at rating=3 can be over-labeled as negative.
     normalized = str(label).lower()
     if normalized != "negative":
         return normalized
@@ -201,6 +222,8 @@ def _adjust_sentiment_with_context(
 
 def extract_main_points(review_text: str, llm_client: LLMClient | None = None) -> Dict[str, Any]:
     """Extract keywords/key points with LLM assist and deterministic fallback."""
+    # Main points are a compact feature contract consumed by urgency/response.
+    # Summary is human-readable context, while points are machine-friendly routing/response cues.
     llm_client = llm_client or LLMClient()
     prompt = ANALYSIS_PROMPT.format(review=review_text)
     response = llm_client.generate(prompt=prompt, model=LLMClient.analysis_model())

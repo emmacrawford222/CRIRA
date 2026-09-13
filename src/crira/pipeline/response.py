@@ -9,6 +9,17 @@ from typing import Any, Dict
 from crira.models.llm_client import LLMClient
 from crira.models.prompts import RESPONSE_PROMPT
 
+# #IMPROVEMENTS_BACKLOG
+# 0) Revisit neutral-response policy before production:
+#    Current behavior returns an empty string for neutral non-escalated reviews.
+#    Consider a short neutral acknowledgment template to improve customer experience.
+# 1) Cost-aware positive response policy:
+#    Do not necessarily reply to all positive reviews; add configurable sampling/threshold rules
+#    to reduce token and delivery cost at scale.
+# 2) High-value customer targeting (future integration):
+#    Prioritize responses for high-value customers by integrating with CRM/LTV systems.
+#    This requires external data integration and should be treated as a later-phase enhancement.
+
 
 def _fallback_response(tone: str, route: str) -> str:
     if route == "human_review":

@@ -1,5 +1,10 @@
 """LLM client wrapper module."""
 
+# Why this module exists:
+# - Keep API/auth/endpoint logic in one place so pipeline stages stay focused on business logic.
+# - Standardize model selection and request/response shapes across analysis, urgency, and response.
+# - Handle provider/endpoint differences and failures consistently to support safe fallbacks.
+
 import json
 import os
 from pathlib import Path

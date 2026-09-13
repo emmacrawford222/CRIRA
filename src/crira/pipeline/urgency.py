@@ -54,6 +54,19 @@ EXPEDITE_RAW_PHRASES = {
     "get in touch",
 }
 
+# #IMPROVEMENTS_BACKLOG
+# 0) Validate neutral-default policy before production:
+#    Current behavior routes neutral non-escalated reviews to llm_response by default.
+#    Keep for now, but run expanded evaluation/A-B testing to confirm this does not create
+#    unnecessary or low-value responses at scale.
+# 1) Short-circuit clearly positive low-risk reviews:
+#    If tone is positive, rating >= 4, and no risk/contact flags, route directly to llm_response
+#    instead of calling _llm_judge. This reduces cost and latency at scale.
+# 2) Restrict LLM judge to ambiguous cases only:
+#    Prefer using _llm_judge for mixed/negative non-escalated cases, not obviously safe positives.
+# 5) Observability and guardrails:
+#    Track judge-call rate, fallback-to-human rate, and route distribution drift by sentiment/rating.
+
 
 def determine_expedite_from_raw(review_text: str, rating: Any = None) -> Dict[str, Any]:
     """Determine an internal expedite flag from business rules on raw review content."""

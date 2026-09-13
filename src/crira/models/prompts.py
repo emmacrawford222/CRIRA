@@ -1,5 +1,15 @@
 """Centralised prompt templates."""
 
+# #IMPROVEMENTS_BACKLOG
+# 0) Add one-shot/few-shot examples:
+#    Include 1-3 representative examples per task (analysis, urgency, response)
+#    to anchor format and reduce output variance.
+# 1) Add negative examples:
+#    Show counter-examples of malformed output and explicitly mark them invalid.
+# 4) Add style guardrails for response prompt:
+#    Include tone examples for positive, neutral, and apology paths.
+# 6) Injection-resistance hardening?
+
 ANALYSIS_PROMPT = (
 	"Extract 4-8 concise customer-review points as short phrases, capturing full context and customer intent. "
     "The keywords or short phrases should be relevant to the review content. "
